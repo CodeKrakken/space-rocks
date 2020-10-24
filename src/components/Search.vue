@@ -25,16 +25,23 @@
       </p>
     </span>
   </div>
-  <form v-else>
-    <h2>Find an Asteroid</h2>
-    <input v-model="id" type="text" placeholder="asteroid ID" name="search">
-    <button
-      type = "button"
-      @click = "fetchAPIData"
-    >
-      Search
-    </button>
-  </form>
+  <div v-else> 
+    <form>
+      <h2>Find an Asteroid</h2>
+      <input v-model="id" type="text" placeholder="asteroid ID" name="search">
+      <button
+        type = "button"
+        @click = "fetchAPIData"
+      >
+        Search
+      </button>
+    </form>
+    <form>
+      <h2>Find by date</h2>
+      <input v-model="startDate" type="date">
+      <input v-model="endDate" type="date">
+    </form>
+  </div>
 </template>
 
 <script>
@@ -48,7 +55,9 @@ export default {
       apiKey: 'IkYVBdLBeJmE1KebssJedxBb4QP8HCPL7WIGq16g',
       id: '',
       orbital: false,
-      closeApproach: false
+      closeApproach: false,
+      startDate: '',
+      endDate: ''
     }
   },
   props: {
