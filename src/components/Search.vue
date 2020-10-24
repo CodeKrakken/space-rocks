@@ -26,7 +26,8 @@
     </span>
   </div>
   <div v-else-if="searchType === 'date'">
-    Date based results go here
+    Date based Results
+    {{ result }}
   </div>
   <div v-else> 
     <form>
