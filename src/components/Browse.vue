@@ -4,7 +4,13 @@
       v-for="(asteroid, index) in asteroids"
       :key = index
     >
-      {{ asteroid }}
+      Name: {{ asteroid.designation }} 
+      ID: {{ asteroid.id }}
+      Absolute Magnitude: {{ asteroid.absolute_magnitude_h }}
+      Estimated Diameter: {{ asteroid.estimated_diameter.meters.estimated_diameter_min }} 
+      - {{ asteroid.estimated_diameter.meters.estimated_diameter_max }}
+      <span v-if="asteroid.is_potentially_hazardous_asteroid === true">Potentially Hazardous<br><br></span>
+      <span v-if="asteroid.is_sentry_object === true">Sentry Object<br><br></span>
       <br><br>
     </div>
   </div>
@@ -37,7 +43,7 @@ export default {
       .then(response => {
         this.asteroids = response.near_earth_objects;
         sessionStorage.result = response.near_earth_objects;
-        console.log(this.result)
+        console.log(this.asteroids)
       })
       .catch(err => {
         console.log(err);

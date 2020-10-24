@@ -1,7 +1,8 @@
 <template>
   <div v-if = "searchType == 'id'">
-    <h3>Search Results: <i>{{id}}</i></h3>
-    Name: {{result.designation}}<br><br>
+    <br>
+    Name: {{result.designation}}<br><br> 
+    ID: {{result.id}}<br><br>
     Absolute Magnitude: {{result.absolute_magnitude_h}}<br><br>
     Estimated Diameter: {{result.estimated_diameter.meters.estimated_diameter_min}} - {{result.estimated_diameter.meters.estimated_diameter_max}} meters<br><br>
     <span v-if="result.is_potentially_hazardous_asteroid === true">Potentially Hazardous<br><br></span>
@@ -175,4 +176,5 @@ export default {
     font-style: italic;
     font-size: 150%;
   }
+
 </style>
