@@ -1,0 +1,29 @@
+[debug] [2020-10-24T21:36:01.702Z] ----------------------------------------------------------------------
+[debug] [2020-10-24T21:36:01.704Z] Command:       /home/pea/.linuxbrew/Cellar/node/13.11.0/bin/node /home/pea/.linuxbrew/bin/firebase serve
+[debug] [2020-10-24T21:36:01.704Z] CLI Version:   8.13.0
+[debug] [2020-10-24T21:36:01.704Z] Platform:      linux
+[debug] [2020-10-24T21:36:01.704Z] Node Version:  v13.11.0
+[debug] [2020-10-24T21:36:01.743Z] Time:          Sat Oct 24 2020 22:36:01 GMT+0100 (British Summer Time)
+[debug] [2020-10-24T21:36:01.744Z] ----------------------------------------------------------------------
+[debug] [2020-10-24T21:36:01.744Z] 
+[debug] [2020-10-24T21:36:01.764Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-10-24T21:36:01.764Z] > authorizing via signed-in user
+[debug] [2020-10-24T21:36:01.764Z] [iam] checking project space-rocks-8513a for permissions ["firebase.projects.get"]
+[debug] [2020-10-24T21:36:01.767Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2020-10-24T21:36:01.767Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2020-10-24T21:36:01.904Z] <<< HTTP RESPONSE 200 {"cache-control":"no-cache, no-store, max-age=0, must-revalidate","expires":"Mon, 01 Jan 1990 00:00:00 GMT","date":"Sat, 24 Oct 2020 20:36:01 GMT","pragma":"no-cache","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-10-24T21:36:01.945Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/space-rocks-8513a:testIamPermissions  
+ {"permissions":["firebase.projects.get"]}
+[debug] [2020-10-24T21:36:02.594Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 24 Oct 2020 20:36:02 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=588","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-10-24T21:36:02.596Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/space-rocks-8513a  
+ 
+[debug] [2020-10-24T21:36:02.781Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 24 Oct 2020 20:36:02 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] 
+[info] === Serving from '/home/pea/Documents/Projects/space-rocks'...
+[info] 
+[debug] [2020-10-24T21:36:02.784Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/space-rocks-8513a/webApps/-/config  
+ 
+[debug] [2020-10-24T21:36:03.646Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 24 Oct 2020 20:36:03 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] i  hosting: Serving hosting files from: dist {"metadata":{"emulator":{"name":"hosting"},"message":"Serving hosting files from: \u001b[1mdist\u001b[22m"}}
+[info] ✔  hosting: Local server: http://localhost:5000 {"metadata":{"emulator":{"name":"hosting"},"message":"Local server: \u001b[4m\u001b[1mhttp://localhost:5000\u001b[22m\u001b[24m"}}

@@ -4,7 +4,7 @@
     <Nav @select-tab="selectTab" @toggle-login="toggleLogin" :loggedIn="loggedIn" />
     <div id="main-content">
       <div v-show="selectedTab === 'Search'"><Search @save-asteroid="saveAsteroid" :loggedIn="loggedIn" /></div>
-      <div v-show="selectedTab === 'Browse'">Browse Page</div>
+      <div v-show="selectedTab === 'Browse'"><Browse /></div>
       <div v-show="selectedTab === 'Profile'">
         <div v-if="loggedIn === 'true'"><Profile :asteroids="asteroids" /></div>
         <div v-else><Login @toggle-login="toggleLogin" /></div>
@@ -15,6 +15,7 @@
 
 <script>
 import Background from './components/Background.vue'
+import Browse from './components/Browse.vue'
 import Nav from './components/Nav.vue'
 import Search from './components/Search.vue'
 import Login from './components/Login.vue'
@@ -25,6 +26,7 @@ export default {
   components: {
     Nav,
     Background,
+    Browse,
     Search,
     Login,
     Profile
