@@ -29,8 +29,8 @@ export default {
         }                
       })
       .then(response => {
-        this.result = response;
-        sessionStorage.result = response;
+        this.result = response.near_earth_objects;
+        sessionStorage.result = response.near_earth_objects;
         console.log(this.result)
       })
       .catch(err => {
