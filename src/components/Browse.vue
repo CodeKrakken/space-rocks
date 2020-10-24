@@ -15,7 +15,7 @@ export default {
   },
   methods: {
     browse() {
-      fetch(`https://api.nasa.gov/neo/rest/v1/neo/browse?page=${this.randomPage}&size=10&api_key=${this.api_key}`, {
+      fetch(`https://api.nasa.gov/neo/rest/v1/neo/browse?page=${sessionStorage.currentBrowse}&size=10&api_key=${this.api_key}`, {
         "method": "GET",
         "headers": {
           'Access-Control-Request-Method': 'GET'
@@ -39,6 +39,9 @@ export default {
     },
   },
   created() {
+    if (!sessionStorage.currentBrowse) {
+      sessionStorage.currentBrowse = this.randomPage
+    }
     this.browse()
   }
 }
