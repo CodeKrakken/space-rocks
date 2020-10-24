@@ -1,6 +1,5 @@
 <template>
   <div v-if = "searchType == 'id'">
-    <br>
     Name: {{result.designation}}<br><br> 
     ID: {{result.id}}<br><br>
     Absolute Magnitude: {{result.absolute_magnitude_h}}<br><br>

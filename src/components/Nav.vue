@@ -71,6 +71,7 @@ export default {
 #nav {
   text-align: center;
   font-size: 200%;
+  margin: 4vw
 }
 
 .tab {
