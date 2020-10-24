@@ -27,7 +27,7 @@
   </div>
   <div v-else> 
     <form>
-      <h2>Find an Asteroid</h2>
+      <h2>Find by ID</h2>
       <input v-model="id" type="text" placeholder="asteroid ID" name="search">
       <button
         type = "button"
