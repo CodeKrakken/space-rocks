@@ -21,7 +21,7 @@ const auth = firebase.auth()
 const usersCollection = db.collection('users')
 const asteroidsCollection = db.collection('asteroids')
 
-db.settings({ timestampsInSnapshots: true });
+// db.settings({ timestampsInSnapshots: true });
 
 export {
   db,

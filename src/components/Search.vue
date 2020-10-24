@@ -27,7 +27,7 @@
   </div>
   <div v-else-if="searchType === 'date'">
     Date based Results
-    {{ result.near_earth_objects }}
+    {{ result }}
   </div>
   <div v-else> 
     <form>
@@ -73,7 +73,7 @@ export default {
   },
   props: {
     loggedIn: {
-      type: String,
+      type: Boolean,
       required: true
     }
   },
@@ -95,8 +95,8 @@ export default {
         }                
       })
       .then(response => {
-        this.result = response;
-        sessionStorage.result = response;
+        this.result = response.near_earth_objects;
+        sessionStorage.result = response.near_earth_objects;
         this.responseAvailable = true;
         console.log(this.result)
       })
