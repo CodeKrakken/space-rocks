@@ -27,7 +27,7 @@
   </div>
   <div v-else-if="searchType === 'date'">
     Date based Results
-    {{ result }}
+    {{ result.near_earth_objects }}
   </div>
   <div v-else> 
     <form>
@@ -81,7 +81,7 @@ export default {
     fetchByDate() {
       this.responseAvailable = false;
       this.searchType = "date";
-      fetch(`https://api.nasa.gov/neo/rest/v1/feed?start_date=2015-04-28&end_date=2015-04-28&detailed=true&api_key=${this.apiKey}`, {
+      fetch(`https://api.nasa.gov/neo/rest/v1/feed?start_date=${this.startDate}&end_date=${this.endDate}&detailed=true&api_key=${this.apiKey}`, {
         "method": "GET",
         "headers": {
           'Access-Control-Request-Method': 'GET'
