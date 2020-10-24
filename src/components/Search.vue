@@ -30,8 +30,8 @@
       <h2>Find by ID</h2>
       <input v-model="id" type="text" placeholder="asteroid ID" name="search">
       <button
-        type = "button"
-        @click = "fetchAPIData"
+        type="button"
+        @click="fetchAPIData"
       >
         Search
       </button>
@@ -40,6 +40,12 @@
       <h2>Find by date</h2>
       <input v-model="startDate" type="date">
       <input v-model="endDate" type="date">
+      <button 
+        type="button"
+        @click="fetchByDate"
+      >
+        Search
+      </button>
     </form>
   </div>
 </template>
@@ -67,6 +73,31 @@ export default {
     }
   },
   methods: {
+    fetchByDate() {
+      this.responseAvailable = false;
+      fetch(`https://api.nasa.gov/neo/rest/v1/feed?start_date=2015-04-28&end_date=2015-04-28&detailed=true&api_key=${this.apiKey}`, {
+        "method": "GET",
+        "headers": {
+          'Access-Control-Request-Method': 'GET'
+        }
+      })
+      .then(response => {
+        if(response.ok){
+          return response.json()
+        } else{
+          alert("Asteroid Not Found.");
+        }                
+      })
+      .then(response => {
+        this.result = response;
+        sessionStorage.result = response;
+        this.responseAvailable = true;
+        console.log(this.result)
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    },
     fetchAPIData() {
       this.responseAvailable = false;
       fetch(`https://api.nasa.gov/neo/rest/v1/neo/${this.id}?api_key=${this.apiKey}`, {
