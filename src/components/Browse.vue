@@ -1,6 +1,12 @@
 <template>
   <div>
-    {{ result }}
+    <div
+      v-for="(asteroid, index) in asteroids"
+      :key = index
+    >
+      {{ asteroid }}
+      <br><br>
+    </div>
   </div>
 </template>
 
@@ -9,7 +15,7 @@ export default {
   data() {
     return {
       api_key: 'IkYVBdLBeJmE1KebssJedxBb4QP8HCPL7WIGq16g',
-      result: [],
+      asteroids: [],
       randomPage: Math.floor(Math.random() * Math.floor(1252))
     }
   },
@@ -25,11 +31,11 @@ export default {
         if(response.ok){
           return response.json()
         } else {
-          alert("Asteroid Not Found.");
+          alert("No Asteroids Found.");
         }                
       })
       .then(response => {
-        this.result = response.near_earth_objects;
+        this.asteroids = response.near_earth_objects;
         sessionStorage.result = response.near_earth_objects;
         console.log(this.result)
       })
