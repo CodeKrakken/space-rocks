@@ -12,6 +12,11 @@
       <span v-if="asteroid.is_potentially_hazardous_asteroid === true">Potentially Hazardous<br><br></span>
       <span v-if="asteroid.is_sentry_object === true">Sentry Object<br><br></span>
     </div>
+    <div>
+      <button @click="newBrowse()">
+        Another 10?
+      </button>
+    </div>
   </div>
 </template>
 
@@ -48,6 +53,10 @@ export default {
         console.log(err);
       });
     },
+    newBrowse() {
+      sessionStorage.currentBrowse = Math.floor(Math.random() * Math.floor(1252));
+      this.browse()
+    }
   },
   created() {
     if (!sessionStorage.currentBrowse) {
