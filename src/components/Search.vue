@@ -61,7 +61,6 @@ export default {
     return {
       result: ' ',
       searchType: '',
-      responseAvailable: false,
       apiKey: 'IkYVBdLBeJmE1KebssJedxBb4QP8HCPL7WIGq16g',
       id: '',
       orbital: false,
@@ -78,7 +77,6 @@ export default {
   },
   methods: {
     fetchByDate() {
-      this.responseAvailable = false;
       this.searchType = "date";
       fetch(`https://api.nasa.gov/neo/rest/v1/feed?start_date=${this.startDate}&end_date=${this.endDate}&detailed=true&api_key=${this.apiKey}`, {
         "method": "GET",
@@ -96,7 +94,6 @@ export default {
       .then(response => {
         this.result = response.near_earth_objects;
         sessionStorage.result = response.near_earth_objects;
-        this.responseAvailable = true;
         console.log(this.result)
       })
       .catch(err => {
@@ -104,7 +101,6 @@ export default {
       });
     },
     fetchAPIData() {
-      this.responseAvailable = false;
       this.searchType = "id";
       fetch(`https://api.nasa.gov/neo/rest/v1/neo/${this.id}?api_key=${this.apiKey}`, {
         "method": "GET",
@@ -120,9 +116,8 @@ export default {
         }                
       })
       .then(response => {
-        this.result = response;
-        sessionStorage.result = response;
-        this.responseAvailable = true;
+        this.asteroids = response.near_earth_objects;
+        sessionStorage.asteroids = response.near_earth.objects;
       })
       .catch(err => {
           console.log(err);

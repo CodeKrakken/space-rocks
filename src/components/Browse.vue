@@ -9,8 +9,8 @@
       Absolute Magnitude: {{ asteroid.absolute_magnitude_h }}
       Estimated Diameter: {{ asteroid.estimated_diameter.meters.estimated_diameter_min }} 
       - {{ asteroid.estimated_diameter.meters.estimated_diameter_max }}
-      <span v-if="asteroid.is_potentially_hazardous_asteroid === true">Potentially Hazardous<br><br></span>
-      <span v-if="asteroid.is_sentry_object === true">Sentry Object<br><br></span>
+      <span v-if="asteroid.is_potentially_hazardous_asteroid === true"><br>Potentially Hazardous</span>
+      <span v-if="asteroid.is_sentry_object === true"><br>Sentry Object</span><br><br>
     </div>
     <div>
       <button @click="newBrowse()">
@@ -26,7 +26,6 @@ export default {
     return {
       api_key: 'IkYVBdLBeJmE1KebssJedxBb4QP8HCPL7WIGq16g',
       asteroids: [],
-      randomPage: Math.floor(Math.random() * Math.floor(1252))
     }
   },
   methods: {
@@ -60,7 +59,7 @@ export default {
   },
   created() {
     if (!sessionStorage.currentBrowse) {
-      sessionStorage.currentBrowse = this.randomPage
+      sessionStorage.currentBrowse = Math.floor(Math.random() * Math.floor(1252));
     }
     this.browse()
   }
