@@ -1,5 +1,5 @@
 <template>
-  <div v-if = "responseAvailable == true">
+  <div v-if = "searchType == 'id'">
     <h3>Search Results: <i>{{id}}</i></h3>
     Name: {{result.designation}}<br><br>
     Absolute Magnitude: {{result.absolute_magnitude_h}}<br><br>
@@ -24,6 +24,9 @@
         {{ key }}: {{ item }}
       </p>
     </span>
+  </div>
+  <div v-else-if="searchType === 'date'">
+    Date based results go here
   </div>
   <div v-else> 
     <form>
@@ -57,6 +60,7 @@ export default {
   data() {
     return {
       result: ' ',
+      searchType: '',
       responseAvailable: false,
       apiKey: 'IkYVBdLBeJmE1KebssJedxBb4QP8HCPL7WIGq16g',
       id: '',
@@ -75,6 +79,7 @@ export default {
   methods: {
     fetchByDate() {
       this.responseAvailable = false;
+      this.searchType = "date";
       fetch(`https://api.nasa.gov/neo/rest/v1/feed?start_date=2015-04-28&end_date=2015-04-28&detailed=true&api_key=${this.apiKey}`, {
         "method": "GET",
         "headers": {
@@ -100,6 +105,7 @@ export default {
     },
     fetchAPIData() {
       this.responseAvailable = false;
+      this.searchType = "id";
       fetch(`https://api.nasa.gov/neo/rest/v1/neo/${this.id}?api_key=${this.apiKey}`, {
         "method": "GET",
         "headers": {
