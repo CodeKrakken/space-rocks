@@ -9,12 +9,13 @@ export default {
   data() {
     return {
       api_key: 'IkYVBdLBeJmE1KebssJedxBb4QP8HCPL7WIGq16g',
-      result: []
+      result: [],
+      randomPage: Math.floor(Math.random() * Math.floor(1252))
     }
   },
   methods: {
     browse() {
-      fetch(`https://api.nasa.gov/neo/rest/v1/neo/browse?page=0&size=10&api_key=${this.api_key}`, {
+      fetch(`https://api.nasa.gov/neo/rest/v1/neo/browse?page=${this.randomPage}&size=10&api_key=${this.api_key}`, {
         "method": "GET",
         "headers": {
           'Access-Control-Request-Method': 'GET'
