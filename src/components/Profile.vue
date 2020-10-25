@@ -23,12 +23,9 @@ export default {
       asteroids: []
     }
   },
-  // mounted() {
-  //   this.getAsteroids()
-  // },
-  // beforeUpdate() {
-  //   this.getAsteroids()
-  // },
+  created() {
+    this.getAsteroids()
+  },
   methods: {
     getAsteroids() {
       db.collection('asteroids').where('userId', '==', fb.auth.currentUser.uid).get()
