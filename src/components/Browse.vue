@@ -4,13 +4,26 @@
       v-for="(asteroid, index) in asteroids"
       :key = index
     >
-      Name: {{ asteroid.designation }}
-      ID: {{ asteroid.id }}
-      Absolute Magnitude: {{ asteroid.absolute_magnitude_h }}
-      Estimated Diameter: {{ asteroid.estimated_diameter.meters.estimated_diameter_min }} 
-      - {{ asteroid.estimated_diameter.meters.estimated_diameter_max }}
-      <span v-if="asteroid.is_potentially_hazardous_asteroid === true"><br>Potentially Hazardous</span>
-      <span v-if="asteroid.is_sentry_object === true"><br>Sentry Object</span><br><br>
+      <span v-if="asteroid.designation">Name: {{asteroid.designation}}<br></span>
+      ID: {{asteroid.id}}<br>
+      <span v-if="asteroid.absolute_magnitude_h">Absolute Magnitude: {{ asteroid.absolute_magnitude_h }}<br></span>
+      <span v-if="asteroid.estimated_diameter.meters">Estimated Diameter: {{ asteroid.estimated_diameter.meters.estimated_diameter_min }} - {{ asteroid.estimated_diameter.meters.estimated_diameter_max }} meters<br></span>
+      <span v-if="asteroid.is_potentially_hazardous_asteroid === true">Potentially Hazardous<br></span>
+      <span v-if="asteroid.is_sentry_object === true">Sentry Object<br></span>
+      <button @click="toggleOrbitalData()">Show/Hide Orbital Data</button>
+      &nbsp;
+      <button @click="toggleCloseApproachData()">Show/Hide Close Approach Data</button>
+      <br><br>
+      <span v-if="orbital === true">
+      <p v-for="(item, key, index) in asteroid.orbital_data" :key="index">
+        {{ key }}: {{ item }}
+      </p>
+      <br><br></span>
+    <span v-if="closeApproach === true">
+      <p v-for="(item, key, index) in asteroid.close_approach_data" :key="index">
+        {{ key }}: {{ item }}<br>
+      </p>
+    </span>
     </div>
     <div>
       <button @click="newBrowse()">
@@ -53,6 +66,12 @@ export default {
     newBrowse() {
       sessionStorage.currentBrowse = Math.floor(Math.random() * Math.floor(1252));
       this.browse()
+    },
+    toggleOrbitalData() {
+      this.orbital = !this.orbital;
+    },
+    toggleCloseApproachData() {
+      this.closeApproach = !this.closeApproach;
     }
   },
   created() {
