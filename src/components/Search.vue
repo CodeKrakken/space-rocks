@@ -21,8 +21,10 @@
     </span>
     <br>
     <span v-if="closeApproach === true">
-      <div v-for="(item, key, index) in asteroid.close_approach_data" :key="index">
-        {{ key }}: {{ item }}
+      <div v-for="(items, index) in asteroid.close_approach_data" :key="index">
+        <div v-for="(item, key, index) in items" :key="index">
+          {{ formatKey(key) }}: {{ item }}
+        </div>
         <br><br>
       </div>
     </span>
@@ -68,7 +70,6 @@ export default {
     return {
       asteroid: '',
       asteroids: [],
-      orbitalData: {},
       searchType: '',
       apiKey: 'IkYVBdLBeJmE1KebssJedxBb4QP8HCPL7WIGq16g',
       id: '',
@@ -116,7 +117,6 @@ export default {
 
         asteroids.sort((a, b) => { return parseFloat(a.approach) - parseFloat(b.approach) })
         this.asteroids = asteroids.slice(0,10)
-        console.log(this.asteroids)
       })
       .catch(err => {
         console.log(err);
@@ -139,7 +139,7 @@ export default {
       })
       .then(response => {
         this.asteroid = response
-        console.log(response.orbital_data)
+        console.log(response.close_approach_data)
       })
       .catch(err => {
         console.log(err);
