@@ -15,14 +15,13 @@ const store = new Vuex.Store({
     }
   },
   actions: {
-    async saveAsteroid({ state }, asteroid) {
-      console.log(asteroid)
+    async saveAsteroid({ state }, asteroidPackage) {
+      console.log(asteroidPackage)
       await fb.asteroidsCollection.add({
         createdOn: new Date(),
         userId: fb.auth.currentUser.uid,
         userName: state.name,
-        asteroidId: asteroid.content.id,
-        name: asteroid.content.name
+        asteroid: asteroidPackage.content
       })
     }
   },

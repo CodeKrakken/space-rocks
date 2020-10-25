@@ -11,7 +11,7 @@
     <button @click="toggleCloseApproachData()">Show/Hide Close Approach Data</button>
     &nbsp;
     <span v-show="loggedIn === 'true'">
-      <button @click="saveAsteroid(id, asteroid.designation)">Save Asteroid</button>
+      <button @click="saveAsteroid(asteroid)">Save Asteroid</button>
     </span>
     <br><br>
     <span v-if="orbital === true">
@@ -148,8 +148,8 @@ export default {
     toggleCloseApproachData() {
       this.closeApproach = !this.closeApproach;
     },
-    saveAsteroid(id, name) {
-      this.$emit('save-asteroid', id, name)
+    saveAsteroid(asteroid) {
+      this.$emit('save-asteroid', asteroid)
     }
   },
 }

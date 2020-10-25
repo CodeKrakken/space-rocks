@@ -67,19 +67,14 @@ export default {
       this.loggedIn = status
       sessionStorage.loggedIn = status
     },
-    saveAsteroid(id, name) {
-      const asteroid = {
-        'id': id,
-        'name': name
-      }
+    saveAsteroid(asteroid) {
       this.$store.dispatch('saveAsteroid', { content: asteroid })
       this.asteroids.push(
         {
           'createdOn': new Date(),
           'userId': fb.auth.currentUser.uid,
           'userName': '',
-          'asteroidId': id,
-          'name': name
+          'asteroid': asteroid
         }
       )
     }
