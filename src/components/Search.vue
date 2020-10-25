@@ -27,7 +27,7 @@
   </div>
   <div v-else-if="searchType === 'date'">
     <div v-for="(item, key, index) in asteroids" :key="index">
-      {{ key }}: {{ item }}<br><br>
+      {{ key }}: {{ item[0] }}<br><br>
     </div>
   </div>
   <div v-else> 
@@ -95,8 +95,21 @@ export default {
         }                
       })
       .then(response => {
-        this.asteroids = response.near_earth_objects;
-        sessionStorage.asteroids = response.near_earth_objects;
+        const dateHash = response.near_earth_objects
+        // console.log(dateHash)
+        for (let indexDate in dateHash) {
+          // console.log(dateHash[indexDate])
+          dateHash[indexDate].forEach(asteroid => {
+            // console.log(asteroid)
+            this.asteroids.push({
+              "id": asteroid.id,
+              "name": asteroid.name,
+              "closest approach": asteroid.close_approach_data[0].miss_distance.kilometers,
+              "close approach date": asteroid.close_approach_data[0].close_approach_date_full
+            })
+          })
+        }
+        // sessionStorage.asteroids = response.near_earth_objects;
         console.log(this.asteroids)
       })
       .catch(err => {
@@ -121,7 +134,7 @@ export default {
       .then(response => {
         this.asteroid = response;
         sessionStorage.asteroid = response;
-        console.log(response)
+        // console.log(response)
       })
       .catch(err => {
           console.log(err);
