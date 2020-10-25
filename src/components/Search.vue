@@ -11,16 +11,16 @@
     <button @click="toggleCloseApproachData()">Show/Hide Close Approach Data</button>
     &nbsp;
     <span v-show="loggedIn === 'true'">
-      <button @click="saveAsteroid(id, asteroids.designation)">Save Asteroid</button>
+      <button @click="saveAsteroid(id, asteroid.designation)">Save Asteroid</button>
     </span>
     <br><br>
     <span v-if="orbital === true">
-      <p v-for="(item, key, index) in asteroids.orbital_data" :key="index">
+      <p v-for="(item, key, index) in asteroid.orbital_data" :key="index">
         {{ key }}: {{ item }}<br><br>
       </p>
       <br><br></span>
     <span v-if="closeApproach === true">
-      <p v-for="(item, key, index) in asteroids.close_approach_data" :key="index">
+      <p v-for="(item, key, index) in asteroid.close_approach_data" :key="index">
         {{ key }}: {{ item }}<br><br>
       </p>
     </span>
