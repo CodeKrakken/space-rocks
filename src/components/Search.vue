@@ -1,9 +1,9 @@
 <template>
   <div v-if = "searchType == 'id'">
-    Name: {{asteroid.designation}}<br>
+    <span v-if="asteroid.designation">Name: {{asteroid.designation}}<br></span>
     ID: {{asteroid.id}}<br>
-    Absolute Magnitude: {{ asteroid.absolute_magnitude_h }}<br>
-    Estimated Diameter: {{ asteroid.estimated_diameter.meters.estimated_diameter_min }} - {{ asteroid.estimated_diameter.meters.estimated_diameter_max }} meters<br>
+    <span v-if="asteroid.absolute_magnitude_h">Absolute Magnitude: {{ asteroid.absolute_magnitude_h }}<br></span>
+    <span v-if="asteroid.estimated_diameter.meters">Estimated Diameter: {{ asteroid.estimated_diameter.meters.estimated_diameter_min }} - {{ asteroid.estimated_diameter.meters.estimated_diameter_max }} meters<br></span>
     <span v-if="asteroid.is_potentially_hazardous_asteroid === true">Potentially Hazardous<br></span>
     <span v-if="asteroid.is_sentry_object === true">Sentry Object<br></span>
     <button @click="toggleOrbitalData()">Show/Hide Orbital Data</button>
