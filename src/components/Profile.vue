@@ -5,8 +5,13 @@
     <div 
       v-for="(asteroidId, index) in asteroids"
       :key=index
-    > 
-      {{ asteroidId.asteroid }}<br><br>
+    >
+      Name: {{ asteroidId.asteroid.designation }}<br>
+      ID: {{ asteroidId.asteroid.id }}<br> 
+      Absolute Magnitude: {{ asteroidId.asteroid.absolute_magnitude_h }}<br>
+      Estimated Diameter: {{ asteroidId.asteroid.estimated_diameter.meters.estimated_diameter_min }} - {{ asteroidId.asteroid.estimated_diameter.meters.estimated_diameter_max }} meters<br>
+      <span v-if="asteroidId.asteroid.is_potentially_hazardous_asteroid === true">Potentially Hazardous<br></span>
+      <span v-if="asteroidId.asteroid.is_sentry_object === true">Sentry Object<br></span>
     </div>
   </div>
 </template>
