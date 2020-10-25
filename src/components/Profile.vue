@@ -3,10 +3,10 @@
     <h2>Profile</h2>
     <h3>Your Asteroids</h3>
       <div 
-        v-for="(asteroid, index) in asteroids"
+        v-for="(asteroidId, index) in asteroids"
         :key=index
       > 
-        {{ asteroid.asteroidName }}
+        {{ asteroidId }}<br><br>
       </div>
   </div>
 </template>

@@ -58,7 +58,7 @@ export default {
 
   props: {
     loggedIn: {
-      type: Boolean,
+      type: String,
       required: true
     }
   }
