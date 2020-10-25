@@ -1,11 +1,11 @@
 <template>
   <div v-if = "searchType == 'id'">
-    Name: {{asteroids.designation}}<br><br> 
-    ID: {{asteroids.id}}<br><br>
-    Absolute Magnitude: {{asteroids.absolute_magnitude_h}}<br><br>
-    Estimated Diameter: {{asteroids.estimated_diameter.meters.estimated_diameter_min}} - {{asteroids.estimated_diameter.meters.estimated_diameter_max}} meters<br><br>
-    <span v-if="asteroids.is_potentially_hazardous_asteroid === true">Potentially Hazardous<br><br></span>
-    <span v-if="asteroids.is_sentry_object === true">Sentry Object<br><br></span>
+    Name: {{asteroid.designation}}<br><br> 
+    ID: {{asteroid.id}}<br><br>
+    Absolute Magnitude: {{asteroid.absolute_magnitude_h}}<br><br>
+    Estimated Diameter: {{asteroid.estimated_diameter.meters.estimated_diameter_min}} - {{asteroid.estimated_diameter.meters.estimated_diameter_max}} meters<br><br>
+    <span v-if="asteroid.is_potentially_hazardous_asteroid === true">Potentially Hazardous<br><br></span>
+    <span v-if="asteroid.is_sentry_object === true">Sentry Object<br><br></span>
     <button @click="toggleOrbitalData()">Show/Hide Orbital Data</button>
     &nbsp;
     <button @click="toggleCloseApproachData()">Show/Hide Close Approach Data</button>
@@ -61,7 +61,8 @@ import * as fb from '../firebase'
 export default {
   data() {
     return {
-      asteroids: ' ',
+      asteroid: '',
+      asteroids: [],
       searchType: '',
       apiKey: 'IkYVBdLBeJmE1KebssJedxBb4QP8HCPL7WIGq16g',
       id: '',
@@ -118,8 +119,9 @@ export default {
         }                
       })
       .then(response => {
-        this.asteroids = response.near_earth_objects;
-        sessionStorage.asteroids = response.near_earth.objects;
+        this.asteroid = response;
+        sessionStorage.asteroid = response;
+        console.log(response)
       })
       .catch(err => {
           console.log(err);
