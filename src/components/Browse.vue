@@ -45,7 +45,6 @@ export default {
       })
       .then(response => {
         this.asteroids = response.near_earth_objects;
-        sessionStorage.result = response.near_earth_objects;
         console.log(this.asteroids)
       })
       .catch(err => {

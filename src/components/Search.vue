@@ -1,32 +1,34 @@
 <template>
   <div v-if = "searchType == 'id'">
-    Name: {{result.designation}}<br><br> 
-    ID: {{result.id}}<br><br>
-    Absolute Magnitude: {{result.absolute_magnitude_h}}<br><br>
-    Estimated Diameter: {{result.estimated_diameter.meters.estimated_diameter_min}} - {{result.estimated_diameter.meters.estimated_diameter_max}} meters<br><br>
-    <span v-if="result.is_potentially_hazardous_asteroid === true">Potentially Hazardous<br><br></span>
-    <span v-if="result.is_sentry_object === true">Sentry Object<br><br></span>
+    Name: {{asteroids.designation}}<br><br> 
+    ID: {{asteroids.id}}<br><br>
+    Absolute Magnitude: {{asteroids.absolute_magnitude_h}}<br><br>
+    Estimated Diameter: {{asteroids.estimated_diameter.meters.estimated_diameter_min}} - {{asteroids.estimated_diameter.meters.estimated_diameter_max}} meters<br><br>
+    <span v-if="asteroids.is_potentially_hazardous_asteroid === true">Potentially Hazardous<br><br></span>
+    <span v-if="asteroids.is_sentry_object === true">Sentry Object<br><br></span>
     <button @click="toggleOrbitalData()">Show/Hide Orbital Data</button>
     &nbsp;
     <button @click="toggleCloseApproachData()">Show/Hide Close Approach Data</button>
     &nbsp;
     <span v-show="loggedIn === 'true'">
-      <button @click="saveAsteroid(id, result.designation)">Save Asteroid</button>
+      <button @click="saveAsteroid(id, asteroids.designation)">Save Asteroid</button>
     </span>
     <br><br>
     <span v-if="orbital === true">
-      <p v-for="(item, key, index) in result.orbital_data" :key="index">
-        {{ key }}: {{ item }}
+      <p v-for="(item, key, index) in asteroids.orbital_data" :key="index">
+        {{ key }}: {{ item }}<br><br>
       </p>
       <br><br></span>
     <span v-if="closeApproach === true">
-      <p v-for="(item, key, index) in result.close_approach_data" :key="index">
-        {{ key }}: {{ item }}
+      <p v-for="(item, key, index) in asteroids.close_approach_data" :key="index">
+        {{ key }}: {{ item }}<br><br>
       </p>
     </span>
   </div>
   <div v-else-if="searchType === 'date'">
-    {{ result }}
+    <div v-for="(item, key, index) in asteroids" :key="index">
+      {{ key }}: {{ item }}<br><br>
+    </div>
   </div>
   <div v-else> 
     <form>
@@ -59,7 +61,7 @@ import * as fb from '../firebase'
 export default {
   data() {
     return {
-      result: ' ',
+      asteroids: ' ',
       searchType: '',
       apiKey: 'IkYVBdLBeJmE1KebssJedxBb4QP8HCPL7WIGq16g',
       id: '',
@@ -92,9 +94,9 @@ export default {
         }                
       })
       .then(response => {
-        this.result = response.near_earth_objects;
-        sessionStorage.result = response.near_earth_objects;
-        console.log(this.result)
+        this.asteroids = response.near_earth_objects;
+        sessionStorage.asteroids = response.near_earth_objects;
+        console.log(this.asteroids)
       })
       .catch(err => {
         console.log(err);
