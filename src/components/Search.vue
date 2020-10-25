@@ -16,7 +16,7 @@
     <br><br>
     <span v-if="orbital === true">
       <div v-for="(item, key, index) in asteroid.orbital_data" :key="index">
-        {{ key }}: {{ item }}
+        {{ formatKey(key) }}: {{ item }}
       </div>
     </span>
     <br>
@@ -68,6 +68,7 @@ export default {
     return {
       asteroid: '',
       asteroids: [],
+      orbitalData: {},
       searchType: '',
       apiKey: 'IkYVBdLBeJmE1KebssJedxBb4QP8HCPL7WIGq16g',
       id: '',
@@ -137,11 +138,11 @@ export default {
         }                
       })
       .then(response => {
-        this.asteroid = response;
-        sessionStorage.asteroid = response;
+        this.asteroid = response
+        console.log(response.orbital_data)
       })
       .catch(err => {
-          console.log(err);
+        console.log(err);
       });
     },
     toggleOrbitalData() {
@@ -152,6 +153,13 @@ export default {
     },
     saveAsteroid(asteroid) {
       this.$emit('save-asteroid', asteroid)
+    },
+    formatKey(key) {
+      var words = key.match(/[A-Za-z][a-z]*/g) || [];
+      return words.map(this.capitalize).join(" ");
+    },
+    capitalize(word) {
+      return word.charAt(0).toUpperCase() + word.substring(1);
     }
   },
 }

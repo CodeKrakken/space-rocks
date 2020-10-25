@@ -53,6 +53,7 @@ export default {
         snapshot.forEach(doc => {  
           this.asteroids.push(doc.data()) 
         })
+        this.asteroids.sort((a, b) => { return parseFloat(b.createdOn) - parseFloat(a.createdOn) })
       })
     },
     selectTab(tab) {
