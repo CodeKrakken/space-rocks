@@ -26,7 +26,7 @@
     </span>
   </div>
   <div v-else-if="searchType === 'date'">
-    <div v-for="(asteroid, index) in tenAsteroids" :key="index">
+    <div v-for="(asteroid, index) in asteroids" :key="index">
       Name: {{ asteroid.name }} <br>
       ID: {{ asteroid.id }} <br>
       Miss Distance: {{ asteroid.approach }} <br>
@@ -66,7 +66,6 @@ export default {
     return {
       asteroid: '',
       asteroids: [],
-      tenAsteroids: [],
       searchType: '',
       apiKey: 'IkYVBdLBeJmE1KebssJedxBb4QP8HCPL7WIGq16g',
       id: '',
@@ -100,9 +99,10 @@ export default {
       })
       .then(response => {
         const dateHash = response.near_earth_objects
+        const asteroids = []
         for (let indexDate in dateHash) {
           dateHash[indexDate].forEach(asteroid => {
-            this.asteroids.push({
+            asteroids.push({
               "id": asteroid.id,
               "name": asteroid.name.replace('(', '').replace(')', ''),
               "approach": asteroid.close_approach_data[0].miss_distance.kilometers,
@@ -111,9 +111,9 @@ export default {
           })
         }
 
-        this.asteroids.sort((a, b) => { return parseFloat(a.approach) - parseFloat(b.approach) })
-        this.tenAsteroids = this.asteroids.slice(0,10)
-        console.log(this.tenAsteroids)
+        asteroids.sort((a, b) => { return parseFloat(a.approach) - parseFloat(b.approach) })
+        this.asteroids = asteroids.slice(0,10)
+        console.log(this.asteroids)
       })
       .catch(err => {
         console.log(err);
