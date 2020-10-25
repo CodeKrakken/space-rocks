@@ -13,30 +13,14 @@
 
 <script>
 
-import { db } from '@/firebase'
-import * as fb from '../firebase' 
-
 export default {
 
-  data() {
-    return {
-      asteroids: []
+  props: {
+    asteroids: {
+      type: Array,
+      required: true
     }
   },
-  created() {
-    this.getAsteroids()
-  },
-  methods: {
-    getAsteroids() {
-      db.collection('asteroids').where('userId', '==', fb.auth.currentUser.uid).get()
-      .then(snapshot => {
-        this.asteroids = []
-        snapshot.forEach(doc => {  
-          this.asteroids.push(doc.data()) 
-        })
-      })
-    }
-  }
 }
 
 </script>

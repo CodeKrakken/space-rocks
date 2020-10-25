@@ -20,6 +20,8 @@ import Nav from './components/Nav.vue'
 import Search from './components/Search.vue'
 import Login from './components/Login.vue'
 import Profile from './components/Profile.vue'
+import { db } from '@/firebase'
+import * as fb from './firebase' 
 
 export default {
   name: 'App',
@@ -40,8 +42,20 @@ export default {
   },
   beforeUpdate() {
     this.updateLogin()
-  }, 
+  },
+  created() {
+    this.getAsteroids()
+  },
   methods: {
+    getAsteroids() {
+      db.collection('asteroids').where('userId', '==', fb.auth.currentUser.uid).get()
+      .then(snapshot => {
+        this.asteroids = []
+        snapshot.forEach(doc => {  
+          this.asteroids.push(doc.data()) 
+        })
+      })
+    },
     selectTab(tab) {
       this.selectedTab = tab
       sessionStorage.tab = tab
@@ -54,10 +68,18 @@ export default {
       sessionStorage.loggedIn = status
     },
     saveAsteroid(id, name) {
+      const asteroid = {
+        'id': id,
+        'name': name
+      }
+      this.$store.dispatch('saveAsteroid', { content: asteroid })
       this.asteroids.push(
         {
-          "id": id,
-          "name": name
+          'createdOn': new Date(),
+          'userId': fb.auth.currentUser.uid,
+          'userName': '',
+          'asteroidId': id,
+          'name': name
         }
       )
     }

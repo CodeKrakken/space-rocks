@@ -11,7 +11,7 @@
     <button @click="toggleCloseApproachData()">Show/Hide Close Approach Data</button>
     &nbsp;
     <span v-show="loggedIn === 'true'">
-      <button @click="saveAsteroid(id)">Save Asteroid</button>
+      <button @click="saveAsteroid(id, asteroid.designation)">Save Asteroid</button>
     </span>
     <br><br>
     <span v-if="orbital === true">
@@ -148,15 +148,8 @@ export default {
     toggleCloseApproachData() {
       this.closeApproach = !this.closeApproach;
     },
-    saveAsteroid(id) {
-      this.$store.dispatch('saveAsteroid', { content: id })
-      // this.$emit('save-asteroid', id, name)
-      // fb.asteroidsCollection.add({
-      //   createdOn: new Date(),
-      //   userId: fb.auth.currentUser.uid,
-      //   asteroidId: id,
-      //   asteroidName: name
-      // })
+    saveAsteroid(id, name) {
+      this.$emit('save-asteroid', id, name)
     }
   },
 }

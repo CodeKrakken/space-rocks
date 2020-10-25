@@ -21,7 +21,8 @@ const store = new Vuex.Store({
         createdOn: new Date(),
         userId: fb.auth.currentUser.uid,
         userName: state.name,
-        asteroidId: asteroid,
+        asteroidId: asteroid.content.id,
+        name: asteroid.content.name
       })
     }
   },
