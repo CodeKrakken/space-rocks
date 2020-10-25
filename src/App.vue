@@ -44,15 +44,12 @@ export default {
     this.updateLogin()
   },
   created() {
-    if (fb.auth.currentUser) {
-      this.getAsteroids()
-    }
+    this.getAsteroids()
   },
   methods: {
     getAsteroids() {
       db.collection('asteroids').where('userId', '==', fb.auth.currentUser.uid).get()
       .then(snapshot => {
-        this.asteroids = []
         snapshot.forEach(doc => {  
           this.asteroids.push(doc.data()) 
         })
@@ -66,6 +63,8 @@ export default {
       this.loggedIn = sessionStorage.loggedIn
     },
     toggleLogin(status) {
+      this.asteroids = []
+      this.getAsteroids()
       this.loggedIn = status
       sessionStorage.loggedIn = status
     },

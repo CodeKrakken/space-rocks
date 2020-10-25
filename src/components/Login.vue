@@ -49,6 +49,14 @@
       }
     },
     methods: {
+      async signup() {
+        const { user } = await fb.auth.createUserWithEmailAndPassword(this.signupForm.email, this.signupForm.password)
+        fb.usersCollection.doc(user.uid).set({
+          email: this.signupForm.email,
+          password: this.signupForm.password
+        })
+        this.login()
+      },
       async login() {
         const { user } = await fb.auth.signInWithEmailAndPassword(this.loginForm.email, this.loginForm.password)
         this.fetchUserProfile(user)
@@ -56,17 +64,8 @@
       async fetchUserProfile(user) {
         const userProfile = await fb.usersCollection.doc(user.uid).get()
         this.userProfile = userProfile.data()
-        console.log(this.userProfile)
         sessionStorage.loggedIn = true
         this.$emit('toggle-login', true)
-      },
-      async signup() {
-        const { user } = await fb.auth.createUserWithEmailAndPassword(this.signupForm.email, this.signupForm.password)
-        await fb.usersCollection.doc(user.uid).set({
-          email: this.signupForm.email,
-          password: this.signupForm.password
-        })
-        this.login()
       },
       toggleForm() {
         this.showLoginForm = !this.showLoginForm
