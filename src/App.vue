@@ -44,7 +44,9 @@ export default {
     this.updateLogin()
   },
   created() {
-    this.getAsteroids()
+    if (fb.auth.currentUser) {
+      this.getAsteroids()
+    }
   },
   methods: {
     getAsteroids() {
