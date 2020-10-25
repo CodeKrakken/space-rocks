@@ -26,8 +26,8 @@
     </span>
   </div>
   <div v-else-if="searchType === 'date'">
-    <div v-for="(item, key, index) in asteroids" :key="index">
-      {{ key }}: {{ item[0] }}<br><br>
+    <div v-for="(asteroid, index) in asteroids" :key="index">
+      {{ asteroid }}<br><br>
     </div>
   </div>
   <div v-else> 
@@ -96,11 +96,8 @@ export default {
       })
       .then(response => {
         const dateHash = response.near_earth_objects
-        // console.log(dateHash)
         for (let indexDate in dateHash) {
-          // console.log(dateHash[indexDate])
           dateHash[indexDate].forEach(asteroid => {
-            // console.log(asteroid)
             this.asteroids.push({
               "id": asteroid.id,
               "name": asteroid.name,
