@@ -110,8 +110,8 @@ export default {
             })
           })
         }
-        // sessionStorage.asteroids = response.near_earth_objects;
         console.log(this.asteroids)
+        this.asteroids.sort((a, b) => { return parseFloat(a.approach) - parseFloat(b.approach) })
       })
       .catch(err => {
         console.log(err);
