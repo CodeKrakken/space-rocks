@@ -137,7 +137,6 @@ export default {
       .then(response => {
         this.asteroid = response;
         sessionStorage.asteroid = response;
-        // console.log(response)
       })
       .catch(err => {
           console.log(err);
