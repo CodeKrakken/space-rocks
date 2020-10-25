@@ -6,7 +6,7 @@
       v-for="(asteroidId, index) in asteroids"
       :key=index
     > 
-      {{ asteroidId }}<br><br>
+      {{ asteroidId.asteroid }}<br><br>
     </div>
   </div>
 </template>
