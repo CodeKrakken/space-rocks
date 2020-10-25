@@ -18,7 +18,7 @@
       <br><br>
       <span v-if="orbital === true">
         <div v-for="(item, key, index) in asteroidId.asteroid.orbital_data" :key="index">
-          {{ key }}: {{ item }}
+          {{ formatKey(key) }}: {{ item }}
         </div>
       </span>
       <br>
@@ -48,6 +48,13 @@ export default {
     toggleCloseApproachData() {
       this.closeApproach = !this.closeApproach;
     },
+    formatKey(key) {
+      var words = key.match(/[A-Za-z][a-z]*/g) || [];
+      return words.map(this.capitalize).join(" ");
+    },
+    capitalize(word) {
+      return word.charAt(0).toUpperCase() + word.substring(1);
+    }
   },
 
   props: {

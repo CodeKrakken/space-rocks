@@ -23,7 +23,7 @@ const store = new Vuex.Store({
         userName: state.name,
         asteroid: asteroidPackage.content
       })
-    }
+    },
   },
   modules: {
   }
