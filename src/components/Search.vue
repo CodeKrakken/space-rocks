@@ -21,7 +21,8 @@
     </span>
     <br>
     <span v-if="closeApproach === true">
-      <div v-for="(items, index) in asteroid.close_approach_data" :key="index">
+      <div v-for="(attributes, index) in asteroid.close_approach_data" :key="index">
+        {{ attributes.miss_distance }}
         <div v-for="(item, key, index) in items" :key="index">
           {{ formatKey(key) }}: {{ item }}
         </div>
