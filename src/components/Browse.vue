@@ -10,20 +10,22 @@
       <span v-if="asteroid.estimated_diameter.meters">Estimated Diameter: {{ asteroid.estimated_diameter.meters.estimated_diameter_min }} - {{ asteroid.estimated_diameter.meters.estimated_diameter_max }} meters<br></span>
       <span v-if="asteroid.is_potentially_hazardous_asteroid === true">Potentially Hazardous<br></span>
       <span v-if="asteroid.is_sentry_object === true">Sentry Object<br></span>
-      <button @click="toggleOrbitalData()">Show/Hide Orbital Data</button>
+      <button @click="toggleOrbitalData()">Orbital Data</button>
       &nbsp;
-      <button @click="toggleCloseApproachData()">Show/Hide Close Approach Data</button>
+      <button @click="toggleCloseApproachData()">Close Approach Data</button>
       <br><br>
       <span v-if="orbital === true">
-      <p v-for="(item, key, index) in asteroid.orbital_data" :key="index">
-        {{ key }}: {{ item }}
-      </p>
-      <br><br></span>
-    <span v-if="closeApproach === true">
-      <p v-for="(item, key, index) in asteroid.close_approach_data" :key="index">
-        {{ key }}: {{ item }}<br>
-      </p>
-    </span>
+        <div v-for="(item, key, index) in asteroid.orbital_data" :key="index">
+          {{ key }}: {{ item }}
+        </div>
+      </span>
+      <br>
+      <span v-if="closeApproach === true">
+        <div v-for="(item, key, index) in asteroid.close_approach_data" :key="index">
+          {{ key }}: {{ item }}
+          <br><br>
+        </div>
+      </span>
     </div>
     <div>
       <button @click="newBrowse()">
@@ -39,6 +41,8 @@ export default {
     return {
       api_key: 'IkYVBdLBeJmE1KebssJedxBb4QP8HCPL7WIGq16g',
       asteroids: [],
+      orbital: false,
+      closeApproach: false,
     }
   },
   methods: {

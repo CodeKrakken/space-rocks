@@ -21,6 +21,7 @@
           {{ key }}: {{ item }}
         </div>
       </span>
+      <br>
       <span v-if="closeApproach === true">
         <div v-for="(item, key, index) in asteroidId.asteroid.close_approach_data" :key="index">
           {{ key }}: {{ item }}
