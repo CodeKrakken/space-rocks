@@ -7,7 +7,6 @@
       <span v-if="asteroid.designation">Name: {{asteroid.designation}}<br></span>
       ID: {{asteroid.id}}<br>
       <span v-if="asteroid.absolute_magnitude_h">Absolute Magnitude: {{ formatNumber(asteroid.absolute_magnitude_h) }}h<br></span>
-      <span v-if="asteroid.estimated_diameter.meters">Estimated Diameter: {{ formatNumber(asteroid.estimated_diameter.meters.estimated_diameter_min) }} - {{ formatNumber(asteroid.estimated_diameter.meters.estimated_diameter_max) }}meters<br></span>
       <span v-if="asteroid.is_potentially_hazardous_asteroid === true">Potentially Hazardous<br></span>
       <span v-if="asteroid.is_sentry_object === true">Sentry Object<br></span>
       <button @click="toggleOrbitalData()">Orbital Data</button>

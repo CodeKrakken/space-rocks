@@ -3,7 +3,6 @@
     <span v-if="asteroid.designation">Name: {{asteroid.designation}}<br></span>
     ID: {{asteroid.id}}<br>
     <span v-if="asteroid.absolute_magnitude_h">Absolute Magnitude: {{ formatNumber(asteroid.absolute_magnitude_h) }} h<br></span>
-    <span v-if="asteroid.estimated_diameter.meters">Estimated Diameter: {{ formatNumber(asteroid.estimated_diameter.meters.estimated_diameter_min) }} - {{ formatNumber(asteroid.estimated_diameter.meters.estimated_diameter_max) }} meters<br></span>
     <span v-if="asteroid.is_potentially_hazardous_asteroid === true">Potentially Hazardous<br></span>
     <span v-if="asteroid.is_sentry_object === true">Sentry Object<br></span>
     <button @click="toggleOrbitalData()">Orbital Data</button>
@@ -44,8 +43,8 @@
     <span v-if="closeApproach === true">
       <div v-for="(attributes, index) in asteroid.close_approach_data" :key="index">
         Approach Date: {{ attributes.close_approach_date }}<br>
-        Relative Velocity: {{ formatNumber(attributes.relative_velocity.kilometers_per_hour) }} km/h<br>
-        Close Approach: {{ formatNumber(attributes.miss_distance.kilometers) }} km<br>
+        Relative Velocity: {{ attributes.relative_velocity.kilometers_per_hour }} km/h<br>
+        Close Approach: {{ attributes.miss_distance.kilometers }} km<br>
         Orbiting Body: {{ attributes.orbiting_body }}
         <br><br>
       </div>
@@ -131,7 +130,7 @@ export default {
             asteroids.push({
               "id": asteroid.id,
               "name": asteroid.name.replace('(', '').replace(')', ''),
-              "approach": this.formatNumber(asteroid.close_approach_data[0].miss_distance.kilometers),
+              "approach": asteroid.close_approach_data[0].miss_distance.kilometers,
               "date": asteroid.close_approach_data[0].close_approach_date_full
             })
           })
