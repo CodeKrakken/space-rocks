@@ -36,7 +36,9 @@
       Mean Anomaly: {{ asteroid.orbital_data.mean_anomaly }}<br>
       Mean Motion: {{ asteroid.orbital_data.mean_motion }}<br>
       Equinox: {{ asteroid.orbital_data.equinox }}<br>
-      Orbit Class: {{ asteroid.orbital_data.orbit_class }}
+      <div v-for="(item, key, index) in asteroid.orbital_data.orbit_class" :key="index">
+        {{ formatKey(key) }}: {{ item }}
+      </div>
     </span>
     <br>
     <span v-if="closeApproach === true">
