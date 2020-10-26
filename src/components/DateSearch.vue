@@ -1,11 +1,5 @@
 <template>
   <div>
-    <div v-for="(asteroid, index) in asteroids" :key="index">
-      <span v-show="asteroid.name">Name: {{ asteroid.name }} <br></span>
-      ID: {{ asteroid.id }} <br>
-      <span v-show="asteroid.approach">Close Approach {{ asteroid.approach }} km <br></span>
-      <span v-show="asteroid.date">Approach Date: {{ asteroid.date }} <br></span><br>
-    </div>
     <form>
       <h2>Find by date</h2>
       <input v-model="startDate" type="date">
@@ -17,11 +11,16 @@
         Search
       </button>
     </form>
+    <div v-for="(asteroid, index) in asteroids" :key="index">
+      <span v-show="asteroid.name">Name: {{ asteroid.name }} <br></span>
+      ID: {{ asteroid.id }} <br>
+      <span v-show="asteroid.approach">Close Approach {{ asteroid.approach }} km <br></span>
+      <span v-show="asteroid.date">Approach Date: {{ asteroid.date }} <br></span><br>
+    </div>
   </div>
 </template>
 
 <script>
-// import * as fb from '../firebase'
 
 export default {
   data() {
