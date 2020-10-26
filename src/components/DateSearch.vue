@@ -12,12 +12,6 @@
       </button>
     </form>
     <br>
-    <div v-for="(asteroid, index) in asteroids" :key="index">
-      <span v-show="asteroid.name">Name: {{ asteroid.name }} <br></span>
-      ID: {{ asteroid.id }} <br>
-      <span v-show="asteroid.approach">Close Approach {{ asteroid.approach }} km <br></span>
-      <span v-show="asteroid.date">Approach Date: {{ asteroid.date }} <br></span><br>
-    </div>
   </div>
 </template>
 
@@ -28,15 +22,12 @@ export default {
     return {
       asteroids: [],
       apiKey: 'IkYVBdLBeJmE1KebssJedxBb4QP8HCPL7WIGq16g',
-      orbital: false,
-      closeApproach: false,
       startDate: '',
       endDate: ''
     }
   },
   methods: {
     fetchByDate() {
-      this.searchType = "date";
       fetch(`https://api.nasa.gov/neo/rest/v1/feed?start_date=${this.startDate}&end_date=${this.endDate}&detailed=true&api_key=${this.apiKey}`, {
         "method": "GET",
         "headers": {
@@ -66,16 +57,11 @@ export default {
 
         asteroids.sort((a, b) => { return parseFloat(a.approach) - parseFloat(b.approach) })
         this.asteroids = asteroids.slice(0,10)
+        this.$emit('set-date-result', this.asteroids)
       })
       .catch(err => {
         console.log(err);
       });
-    },
-    toggleOrbitalData() {
-      this.orbital = !this.orbital;
-    },
-    toggleCloseApproachData() {
-      this.closeApproach = !this.closeApproach;
     },
   },
 }

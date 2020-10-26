@@ -4,13 +4,10 @@
     <Nav @select-tab="selectTab" @toggle-login="toggleLogin" :loggedIn="loggedIn" />
     <div id="main-content">
       <div v-show="selectedTab === 'Search'">
-        <IdSearch @set-id-result="setIdResult" />
-        <div v-if="showIdResults === true">
-          <IdResults :asteroid="asteroid" />
-        </div>
-        <div v-else>
-          <DateSearch @save-asteroid="saveAsteroid" :loggedIn="loggedIn" />
-        </div>
+        <div v-if="showIdSearch"><IdSearch  @set-id-result="setIdResult" /></div>
+        <div v-if="showIdResults"><IdResults @save-asteroid="saveAsteroid" :asteroid="asteroid" :loggedIn="loggedIn" /></div>
+        <div v-if="showDateSearch"><DateSearch  @set-date-result="setDateResult" /></div>
+        <div v-if="showDateResults"><DateResults @save-asteroid="saveAsteroid" :asteroids="asteroids" :loggedIn="loggedIn" /></div>
       </div>
       <div v-show="selectedTab === 'Browse'"><Browse /></div>
       <div v-show="selectedTab === 'Profile'">
@@ -26,6 +23,7 @@ import Background from './components/Background.vue'
 import Browse from './components/Browse.vue'
 import Nav from './components/Nav.vue'
 import DateSearch from './components/DateSearch.vue'
+import DateResults from './components/DateResults.vue'
 import Login from './components/Login.vue'
 import Profile from './components/Profile.vue'
 import { db } from '@/firebase'
@@ -40,6 +38,7 @@ export default {
     Background,
     Browse,
     DateSearch,
+    DateResults,
     Login,
     Profile,
     IdSearch,
@@ -51,7 +50,10 @@ export default {
       loggedIn: sessionStorage.loggedIn || false,
       asteroids: [],
       asteroid: {},
-      showIdResults: false
+      showIdResults: false,
+      showDateResults: false,
+      showIdSearch: true,
+      showDateSearch: true
     }
   },
   beforeUpdate() {
@@ -96,8 +98,18 @@ export default {
     },
     setIdResult(asteroid) {
       this.asteroid = asteroid
+      this.showIdSearch = true
       this.showIdResults = true
-    } 
+      this.showDateSearch = false
+      this.showDateResults = false
+    },
+    setDateResult(asteroids) {
+      this.asteroids = asteroids
+      this.showDateSearch = true
+      this.showDateResults = true
+      this.showIdResults = false
+      this.showIdResults = false
+    }
   },
 }
 </script>

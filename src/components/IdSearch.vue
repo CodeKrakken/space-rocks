@@ -20,7 +20,6 @@ export default {
   data() {
     return {
       asteroid: '',
-      searchType: '',
       apiKey: 'IkYVBdLBeJmE1KebssJedxBb4QP8HCPL7WIGq16g',
       id: '',
       orbital: false,
@@ -29,7 +28,6 @@ export default {
   },
   methods: {
     fetchAPIData() {
-      this.searchType = "id";
       fetch(`https://api.nasa.gov/neo/rest/v1/neo/${this.id}?api_key=${this.apiKey}`, {
         "method": "GET",
         "headers": {
