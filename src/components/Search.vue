@@ -2,7 +2,7 @@
   <div v-if = "searchType == 'id'">
     <span v-if="asteroid.designation">Name: {{asteroid.designation}}<br></span>
     ID: {{asteroid.id}}<br>
-    <span v-if="asteroid.absolute_magnitude_h">Absolute Magnitude: {{ formatNumber(asteroid.absolute_magnitude_h) }}<br></span>
+    <span v-if="asteroid.absolute_magnitude_h">Absolute Magnitude: {{ formatNumber(asteroid.absolute_magnitude_h) }} h<br></span>
     <span v-if="asteroid.estimated_diameter.meters">Estimated Diameter: {{ formatNumber(asteroid.estimated_diameter.meters.estimated_diameter_min) }} - {{ formatNumber(asteroid.estimated_diameter.meters.estimated_diameter_max) }} meters<br></span>
     <span v-if="asteroid.is_potentially_hazardous_asteroid === true">Potentially Hazardous<br></span>
     <span v-if="asteroid.is_sentry_object === true">Sentry Object<br></span>
@@ -15,9 +15,28 @@
     </span>
     <br><br>
     <span v-if="orbital === true">
-      <div v-for="(item, key, index) in asteroid.orbital_data" :key="index">
-        {{ formatKey(key) }}: {{ item }}
-      </div>
+      Orbit ID: {{ asteroid.orbital_data.orbit_id}}<br>
+      Orbit Determination Date: {{ asteroid.orbital_data.orbit_determination_date }}<br>
+      First Observation Date: {{ asteroid.orbital_data.first_observation_date }}<br>
+      Data Arc: {{ asteroid.orbital_data.data_arc_in_days }} days<br>
+      Observations Used: {{ asteroid.orbital_data.observations_used }}<br>
+      Orbit Uncertainty: {{ asteroid.orbital_data.orbit_uncertainty }}<br>
+      Minimum Orbit Intersection: {{ asteroid.orbital_data.minimum_orbit_intersection }}<br>
+      Jupiter_Tisserand_Invariant: {{ asteroid.orbital_data.jupiter_tisserand_invariant }}<br>
+      Epoch_Osculation: {{ asteroid.orbital_data.epoch_osculation }}<br>
+      Eccentricity: {{ asteroid.orbital_data.eccentricity }}<br>
+      Semi Major Axis: {{ asteroid.orbital_data.semi_major_axis }}<br>
+      Inclination: {{ asteroid.orbital_data.inclination }}<br>
+      Ascending Node Longitude: {{ asteroid.orbital_data.ascending_node_longitude }}<br>
+      Orbital Period: {{ asteroid.orbital_data.orbital_period }}<br>
+      Perihelion Distance: {{ asteroid.orbital_data.perihelion_distance }}<br>
+      Perihelion Argument: {{ asteroid.orbital_data.perihelion_argument }}<br>
+      Aphelion Distance: {{ asteroid.orbital_data.aphelion_distance }}<br>
+      Perihelion Time: {{ asteroid.orbital_data.perihelion_time }}<br>
+      Mean Anomaly: {{ asteroid.orbital_data.mean_anomaly }}<br>
+      Mean Motion: {{ asteroid.orbital_data.mean_motion }}<br>
+      Equinox: {{ asteroid.orbital_data.equinox }}<br>
+      Orbit Class: {{ asteroid.orbital_data.orbit_class }}
     </span>
     <br>
     <span v-if="closeApproach === true">
@@ -26,10 +45,6 @@
         Relative Velocity: {{ formatNumber(attributes.relative_velocity.kilometers_per_hour) }} km/h<br>
         Close Approach: {{ formatNumber(attributes.miss_distance.kilometers) }} km<br>
         Orbiting Body: {{ attributes.orbiting_body }}
-
-        <div v-for="(item, key, index) in items" :key="index">
-          {{ formatKey(key) }}: {{ item }}
-        </div>
         <br><br>
       </div>
     </span>
@@ -144,7 +159,7 @@ export default {
       })
       .then(response => {
         this.asteroid = response
-        console.log(response.close_approach_data)
+        console.log(response)
       })
       .catch(err => {
         console.log(err);
@@ -163,12 +178,12 @@ export default {
       var words = key.match(/[A-Za-z][a-z]*/g) || [];
       return words.map(this.capitalize).join(" ");
     },
-    formatNumber(number) {
-      return Math.round((number + 0.00001) * 100) / 100
-    },
     capitalize(word) {
       return word.charAt(0).toUpperCase() + word.substring(1);
-    }
+    },
+    formatNumber(num) {
+      return Math.round((num + 0.00001) * 100) / 100
+    },
   },
 }
 </script>
