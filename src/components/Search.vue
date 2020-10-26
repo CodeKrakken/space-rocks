@@ -22,7 +22,11 @@
     <br>
     <span v-if="closeApproach === true">
       <div v-for="(attributes, index) in asteroid.close_approach_data" :key="index">
-        {{ attributes.miss_distance }}
+        Approach Date: {{ attributes.close_approach_date }}<br>
+        Relative Velocity: {{ attributes.relative_velocity.kilometers_per_hour }} km/h<br>
+        Close Approach: {{ attributes.miss_distance.kilometers }} km<br>
+        Orbiting Body: {{ attributes.orbiting_body }}
+
         <div v-for="(item, key, index) in items" :key="index">
           {{ formatKey(key) }}: {{ item }}
         </div>
@@ -34,7 +38,7 @@
     <div v-for="(asteroid, index) in asteroids" :key="index">
       Name: {{ asteroid.name }} <br>
       ID: {{ asteroid.id }} <br>
-      Miss Distance: {{ asteroid.approach }} <br>
+      Close Approach {{ asteroid.approach }} <br>
       Approach Date: {{ asteroid.date }} <br><br>
     </div>
   </div>
