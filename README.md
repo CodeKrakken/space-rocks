@@ -4,6 +4,8 @@ This was a great challenge, using some technology I know (Vue) and some I don't 
 * A lot of it quite ugly. I had planned a nicer display involving asteroid previews and full information, taking up the full screen with the orbital and close approach data on display at all times, but as ever, most of the styling got left to the last minute.
 * I would have liked to have Save buttons for all asteroids, no matter where they have been searched.
 * I would have liked to add a delete button for each asteroid in the profile.
+* There is repetition. This is hugely against what I stand for, but when learning new technology it is sometimes easier to bash it out in front of you and tidy it up later. I find this process helps me to more fully digest the code. Of course, you need to have the time to tidy up.
+* I didn't get to do any tests. I like to practise TDD but I find it tricky with new technology.
 * If I had really had enough time, it would have been great to get a graph or two involved!
 
 All in all it has been a lot of fun, very hard work, and a very satisfying learning experience. I plan to continue the project, perhaps turning it into a more general Space information site.
