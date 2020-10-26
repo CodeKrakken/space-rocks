@@ -53,10 +53,10 @@
   </div>
   <div v-else-if="searchType === 'date'">
     <div v-for="(asteroid, index) in asteroids" :key="index">
-      Name: {{ asteroid.name }} <br>
+      <span v-show="asteroid.name">Name: {{ asteroid.name }} <br></span>
       ID: {{ asteroid.id }} <br>
-      Close Approach {{ asteroid.approach }} km <br>
-      Approach Date: {{ asteroid.date }} <br><br>
+      <span v-show="asteroid.approach">Close Approach {{ asteroid.approach }} km <br></span>
+      <span v-show="asteroid.date">Approach Date: {{ asteroid.date }} <br></span><br>
     </div>
   </div>
   <div v-else> 
@@ -131,7 +131,7 @@ export default {
             asteroids.push({
               "id": asteroid.id,
               "name": asteroid.name.replace('(', '').replace(')', ''),
-              "approach": this.asteroid.close_approach_data[0].miss_distance.kilometers,
+              "approach": asteroid.close_approach_data[0].miss_distance.kilometers,
               "date": asteroid.close_approach_data[0].close_approach_date_full
             })
           })
@@ -182,6 +182,9 @@ export default {
     },
     capitalize(word) {
       return word.charAt(0).toUpperCase() + word.substring(1);
+    },
+    formatNumber(num) {
+      return Math.round((num + 0.00001) * 100) / 100
     },
   },
 }
