@@ -4,7 +4,7 @@
     <Nav @select-tab="selectTab" @toggle-login="toggleLogin" :loggedIn="loggedIn" />
     <div id="main-content">
       <div v-show="selectedTab === 'Search'">
-        <Search @save-asteroid="saveAsteroid" :loggedIn="loggedIn" />
+        <IdSearch @save-asteroid="saveAsteroid" :loggedIn="loggedIn" />
         <DateSearch @save-asteroid="saveAsteroid" :loggedIn="loggedIn" />
       </div>
       <div v-show="selectedTab === 'Browse'"><Browse /></div>
@@ -21,12 +21,11 @@ import Background from './components/Background.vue'
 import Browse from './components/Browse.vue'
 import Nav from './components/Nav.vue'
 import DateSearch from './components/DateSearch.vue'
-// import IdSearch from './components/IdSearch.vue'
 import Login from './components/Login.vue'
 import Profile from './components/Profile.vue'
 import { db } from '@/firebase'
 import * as fb from './firebase' 
-import Search from './components/Search.vue'
+import IdSearch from './components/IdSearch.vue'
 
 export default {
   name: 'App',
@@ -35,10 +34,9 @@ export default {
     Background,
     Browse,
     DateSearch,
-    // IdSearch,
     Login,
     Profile,
-    Search
+    IdSearch
   },
   data() {
     return {
