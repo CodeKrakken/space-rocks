@@ -4,8 +4,13 @@
     <Nav @select-tab="selectTab" @toggle-login="toggleLogin" :loggedIn="loggedIn" />
     <div id="main-content">
       <div v-show="selectedTab === 'Search'">
-        <IdSearch @save-asteroid="saveAsteroid" :loggedIn="loggedIn" />
-        <DateSearch @save-asteroid="saveAsteroid" :loggedIn="loggedIn" />
+        <IdSearch @set-id-result="setIdResult" />
+        <div v-if="showIdResults === true">
+          <IdResults :asteroid="asteroid" />
+        </div>
+        <div v-else>
+          <DateSearch @save-asteroid="saveAsteroid" :loggedIn="loggedIn" />
+        </div>
       </div>
       <div v-show="selectedTab === 'Browse'"><Browse /></div>
       <div v-show="selectedTab === 'Profile'">
@@ -26,6 +31,7 @@ import Profile from './components/Profile.vue'
 import { db } from '@/firebase'
 import * as fb from './firebase' 
 import IdSearch from './components/IdSearch.vue'
+import IdResults from './components/IdResults.vue'
 
 export default {
   name: 'App',
@@ -36,13 +42,16 @@ export default {
     DateSearch,
     Login,
     Profile,
-    IdSearch
+    IdSearch,
+    IdResults
   },
   data() {
     return {
       selectedTab: (sessionStorage.tab || 'Search'),
       loggedIn: sessionStorage.loggedIn || false,
-      asteroids: []
+      asteroids: [],
+      asteroid: {},
+      showIdResults: false
     }
   },
   beforeUpdate() {
@@ -84,7 +93,11 @@ export default {
           'asteroid': asteroid
         }
       )
-    }
+    },
+    setIdResult(asteroid) {
+      this.asteroid = asteroid
+      this.showIdResults = true
+    } 
   },
 }
 </script>
