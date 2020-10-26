@@ -6,9 +6,13 @@
       v-for="(asteroidId, index) in asteroids"
       :key=index
     >
-      <span v-if="asteroidId.asteroid.designation">Name: {{ asteroidId.asteroid.designation }}<br></span>
+      <span v-if="asteroidId.asteroid.name">Name: {{ asteroidId.asteroid.name }}<br></span>
       ID: {{ asteroidId.asteroid.id }}<br> 
+<<<<<<< HEAD
       <span v-if="asteroidId.asteroid.absolute_magnitude_h">Absolute Magnitude: {{ asteroidId.asteroid.absolute_magnitude_h }}<br></span>
+=======
+      <span v-if="asteroidId.asteroid.absolute_magnitude_h">Absolute Magnitude: {{ asteroidId.asteroid.absolute_magnitude_h }} h<br></span>
+>>>>>>> addeaad297d31b780157551f3d80d35c34c0fb4d
       <span v-if="asteroidId.asteroid.is_potentially_hazardous_asteroid === true">Potentially Hazardous<br></span>
       <span v-if="asteroidId.asteroid.is_sentry_object === true">Sentry Object<br></span>
       <button @click="toggleOrbitalData()">Orbital Data</button>
