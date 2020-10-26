@@ -89,42 +89,6 @@ export default {
     }
   },
   methods: {
-    fetchByDate() {
-      this.searchType = "date";
-      fetch(`https://api.nasa.gov/neo/rest/v1/feed?start_date=${this.startDate}&end_date=${this.endDate}&detailed=true&api_key=${this.apiKey}`, {
-        "method": "GET",
-        "headers": {
-          'Access-Control-Request-Method': 'GET'
-        }
-      })
-      .then(response => {
-        if(response.ok){
-          return response.json()
-        } else{
-          alert("Asteroid Not Found.");
-        }                
-      })
-      .then(response => {
-        const dateHash = response.near_earth_objects
-        const asteroids = []
-        for (let indexDate in dateHash) {
-          dateHash[indexDate].forEach(asteroid => {
-            asteroids.push({
-              "id": asteroid.id,
-              "name": asteroid.name.replace('(', '').replace(')', ''),
-              "approach": asteroid.close_approach_data[0].miss_distance.kilometers,
-              "date": asteroid.close_approach_data[0].close_approach_date_full
-            })
-          })
-        }
-
-        asteroids.sort((a, b) => { return parseFloat(a.approach) - parseFloat(b.approach) })
-        this.asteroids = asteroids.slice(0,10)
-      })
-      .catch(err => {
-        console.log(err);
-      });
-    },
     fetchAPIData() {
       this.searchType = "id";
       fetch(`https://api.nasa.gov/neo/rest/v1/neo/${this.id}?api_key=${this.apiKey}`, {
