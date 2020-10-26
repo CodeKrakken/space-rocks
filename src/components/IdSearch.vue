@@ -10,6 +10,7 @@
         Search
       </button>
     </form>
+    <br>
     <div v-if="searchType === 'id'">
       <span v-if="asteroid.designation">Name: {{asteroid.designation}}<br></span>
       ID: {{asteroid.id}}<br>
@@ -51,7 +52,6 @@
           {{ formatKey(key) }}: {{ item }}
         </div>
       </span>
-      <br>
       <span v-if="closeApproach === true">
         <div v-for="(attributes, index) in asteroid.close_approach_data" :key="index">
           Approach Date: {{ attributes.close_approach_date }}<br>
@@ -66,7 +66,6 @@
 </template>
 
 <script>
-// import * as fb from '../firebase'
 
 export default {
   data() {

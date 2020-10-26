@@ -11,6 +11,7 @@
         Search
       </button>
     </form>
+    <br>
     <div v-for="(asteroid, index) in asteroids" :key="index">
       <span v-show="asteroid.name">Name: {{ asteroid.name }} <br></span>
       ID: {{ asteroid.id }} <br>
