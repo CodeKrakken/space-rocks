@@ -1,5 +1,6 @@
 # space-rocks
-<p align="justify">This began as a Tech Test but since I didn't finish it to my full satisfaction I decided to carry it on as a personal project. It is still very much Work In Progress!</p>
+<p align="justify">This began as a Tech Test but since I didn't finish it to my full satisfaction I decided to carry it on as a personal project. It is still very much Work In Progress.</p>
+
 ## Tech Test Write Up
 <p align="justify">
 This was a great challenge, using some technology I know (Vue) and some I don't (Firebase). I spent three days learning Firebase, Vuex and Vue Router with a dummy project before commencing the challenge. I didn't want to go in half-cocked. I'm glad I put in the time - there was a lot of hidden complexity. After three days I abandoned my attempt and started again, eliminating Vuex and Vue Router for the sake of simplicity. This enabled me to focus fully on Firebase and the areas of Vue with which I am less familiar. After a lot more hard work I found that in order to get the DOM to dynamically update when a new asteroid is added to the profile, I had to instigate Vuex anyway - this did not prove too difficult, even at a fairly advanced stage. Prior to this I had been using a hook - this proved troublesome as I managed to max out my Firestore allowance by sending 50,000 requests in about an hour. I transferred to a different email account and carried on. However in the end, time (or lack of it) has been my enemy. There are a few shortcomings I would like to highlight:
